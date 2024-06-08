@@ -1,0 +1,25 @@
+/*========================================================== Navbar styles ==========================================================*/
+#navbar{
+    padding: 0 60px 0 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow:   0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+}
+
+#navBrand{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: fit-content;
+    gap: 0.7rem;
+    font-size: var(--fs-h4);
+    font-weight: var(--fw-extra-bold);
+    color: #1175d3;
+}
+
+#mindsLogo{
+    width: 150px;
+    height: auto;
+}
