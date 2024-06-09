@@ -67,3 +67,8 @@ input{
     border: solid 1px;
     padding: 10px;
 }
+
+input:focus {
+    outline: none;
+    border-color: var(--bg-black);
+}
