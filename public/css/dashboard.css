@@ -1,0 +1,25 @@
+#welcomeHeader{
+    padding: 8px 15px;
+    margin-bottom: 20px;
+}
+
+#newWashRecordButton {
+    width: 100%;
+    display: inline-block;
+    padding: 20px 20px;
+    font-size: 16px;
+    color: black;
+    text-decoration: none;
+    border: 2px dashed black;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#newWashRecord{
+    padding: 0 15px;
+}
+
+#newWashRecordButton:hover {
+    background-color: #f0f0f0; /* Light gray background on hover */
+}

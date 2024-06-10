@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+    <!--========================================================== CSS ==========================================================-->
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/index.css" />
+</head>
+<body>
+    <nav id="navbar">
+         <!--Nav Brand-->
+         <a href="index.html" id="navBrand">
+            <img
+              src="images/logo-minds@2x.png"
+              alt="On Track Logo"
+              id="mindsLogo"
+            />
+          </a>
+    </nav>
+
+    <main>
+      <div id="loginContainer">
+        <h1 id="loginHeader">Login</h1>
+
+        <!--Login form-->
+        <form id="loginForm">
+          <div>
+            <label for="nameLoginInput">Name</label>
+            <input
+              type="text"
+              id="nameLoginInput"
+              placeholder="Name..."
+              required
+            />
+          </div>
+          <div>
+            <label for="passwordLoginInput">Password</label>
+            <input
+              type="password"
+              id="passwordLoginInput"
+              placeholder="Password..."
+              required
+            />
+          </div>
+          <button type="submit" id="loginButton">Login</button>
+        </form>
+      </div>
+    </main>
+</body>
+</html>
