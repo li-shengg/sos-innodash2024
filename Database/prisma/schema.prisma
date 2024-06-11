@@ -16,7 +16,19 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Users {
-  address String  @id @unique
-  paid    Boolean @default(false)
+model User {
+  userid   Int     @id @default(sequence())
+  name     String
+  password String
 }
+
+model Cars {
+  carid           Int      @id @default(sequence())
+  cartype      String?
+  carplate     String?
+  date         DateTime?
+  time         DateTime?
+  payment_type String?
+  tips         Float?
+}
+

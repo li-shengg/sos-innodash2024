@@ -22,8 +22,6 @@ import os
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "C:/Users/65890/Documents/SP Modules Y2Sem1/Dell/sos-innodash2024/AI_Model/lunar-parsec-417813-9b4958f8545d.json"
 
 
-
-
 aiplatform.init(project=PROJECT_ID,
               location=REGION,
               credentials=credentials)
