@@ -7,4 +7,7 @@ Go to the Database directory
 3. npm run dev
 
 
+Packages/Dependencies to install:
+1. 
+
 
