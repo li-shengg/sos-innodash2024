@@ -19,7 +19,8 @@ import base64
 from google.cloud import aiplatform
 from google.cloud.aiplatform.gapic.schema import predict
 import os
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "C:/Users/65890/Documents/SP Modules Y2Sem1/Dell/sos-innodash2024/AI_Model/lunar-parsec-417813-9b4958f8545d.json"
+
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "./AI_Model/lunar-parsec-417813-9b4958f8545d.json"
 
 
 aiplatform.init(project=PROJECT_ID,
