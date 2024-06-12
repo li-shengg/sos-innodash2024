@@ -7,8 +7,6 @@ async function findAllCars() {
     return await prisma.cars.findMany();
 }
 
-
-
 module.exports = {
     findAllCars
 };
