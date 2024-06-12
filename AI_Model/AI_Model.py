@@ -5,7 +5,6 @@ key_path="lunar-parsec-417813-9b4958f8545d.json"
 
 credentials=Credentials.from_service_account_file(
     key_path
-
 )
 
 if credentials.expired:
