@@ -4,6 +4,18 @@ from google.oauth2.service_account import Credentials
 from google.auth.transport.requests import Request
 import os
 
+# Get the directory of the current script
+current_dir = os.path.dirname(__file__)
+
+# Construct the path to the key file relative to the current script
+key_path = os.path.join(current_dir, '../AI_Model/lunar-parsec-417813-9b4958f8545d.json')
+
+# Normalize the path
+key_path = os.path.normpath(key_path)
+
+print(f'Using key file at: {key_path}')
+
+
 def predict(
     key_path="C:/Users/65890/Documents/SP Modules Y2Sem1/Dell/sos-innodash2024/AI_Model/lunar-parsec-417813-9b4958f8545d.json",
     project: str = "372352180346",
