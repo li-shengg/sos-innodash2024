@@ -1,5 +1,5 @@
 // controller.js
-const { findAllCars } = require('../models/models.js');
+const { findAllCars } = require('../models/carmodels');
 
 async function getCars(req, res) {
     try {

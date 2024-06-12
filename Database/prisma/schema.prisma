@@ -16,7 +16,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
+model Users {
   userid   Int     @id @default(sequence())
   name     String
   password String
@@ -28,7 +28,14 @@ model Cars {
   carplate     String?
   date         DateTime?
   time         DateTime?
-  payment_type String?
   tips         Float?
 }
 
+enum CarType {
+  SaloonCar
+  MPV_SUV_Minivan
+  LargeVan
+  Minibus
+  Taxi_Saloon
+  Taxi_SUV
+}
