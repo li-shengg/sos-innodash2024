@@ -8,7 +8,7 @@
     "dev": "nodemon index.js",
     "init_tables": "node src/configs/initTables.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-     "prisma:generate": "prisma generate --schema=./Database/prisma/schema.prisma"
+    "prisma:generate": "prisma generate --schema=./Database/prisma/schema.prisma"
   },
   "author": "team_sos",
   "license": "ISC",
