@@ -1,24 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Log In</title>
     <!--========================================================== CSS ==========================================================-->
     <link rel="stylesheet" href="css/app.css" />
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/index.css" />
-</head>
-<body>
+    <!--Query Commands Javascript-->
+    <script
+      src="javascript/queryCommands.js"
+      type="text/javascript"
+      defer
+    ></script>
+    <!--Get Current URL Javascript-->
+    <script
+      src="javascript/getCurrentURL.js"
+      type="text/javascript"
+      defer
+    ></script>
+    <script
+      src="javascript/loginQuery.js"
+      type="text/javascript"
+      defer
+    ></script>
+  </head>
+  <body>
     <nav id="navbar">
-         <!--Nav Brand-->
-         <a href="index.html" id="navBrand">
-            <img
-              src="images/logo-minds@2x.png"
-              alt="On Track Logo"
-              id="mindsLogo"
-            />
-          </a>
+      <!--Nav Brand-->
+      <a href="index.html" id="navBrand">
+        <img
+          src="images/logo-minds@2x.png"
+          alt="On Track Logo"
+          id="mindsLogo"
+        />
+      </a>
     </nav>
 
     <main>
@@ -28,10 +45,10 @@
         <!--Login form-->
         <form id="loginForm">
           <div>
-            <label for="nameLoginInput">Name</label>
+            <label for="usernameLoginInput">Name</label>
             <input
               type="text"
-              id="nameLoginInput"
+              id="usernameLoginInput"
               placeholder="Name..."
               required
             />
@@ -49,5 +66,5 @@
         </form>
       </div>
     </main>
-</body>
+  </body>
 </html>
