@@ -1,2 +1,0 @@
--- AlterSequence
-ALTER SEQUENCE "Cars_carid_seq" MAXVALUE 9223372036854775807;

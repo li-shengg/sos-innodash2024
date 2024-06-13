@@ -16,14 +16,16 @@ RUN npm install
 # Copy the entire sos-innnodash2024 directory to the working directory
 COPY . .
 
-# Change working directory to the Database folder
-WORKDIR /usr/src/app/sos-innodash2024/Database
+# # Change working directory to the Database folder
+# WORKDIR /usr/src/app/sos-innodash2024/Database
 
-# Run prisma generate to generate Prisma client
-RUN npx prisma generate
+# # Run prisma generate to generate Prisma client
+# RUN npx prisma generate
 
-# Change working directory back to the main app directory
-WORKDIR /usr/src/app/sos-innodash2024
+# # Change working directory back to the main app directory
+# WORKDIR /usr/src/app/sos-innodash2024
+
+RUN npm run init_tables
 
 # Expose the port your app runs on
 EXPOSE 3000
