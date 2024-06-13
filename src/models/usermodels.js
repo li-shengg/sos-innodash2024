@@ -1,4 +1,5 @@
 // models.js
+require('dotenv').config()
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
@@ -6,9 +7,9 @@ async function checkPrismaInitialization() {
     try {
         // Attempt a simple query to check if Prisma Client is initialized
         await prisma.$queryRaw`SELECT 1`;
-        console.log('Prisma Client initialized successfully.');
+        console.log('Prisma Client initialized successfully at models.');
     } catch (error) {
-        console.error('Prisma Client initialization failed:', error);
+        console.error('Prisma Client initialization failed at models:', error);
         throw error;
     }
 }
