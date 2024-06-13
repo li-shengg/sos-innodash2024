@@ -2,6 +2,18 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
+async function checkPrismaInitialization() {
+    try {
+        // Attempt a simple query to check if Prisma Client is initialized
+        await prisma.$queryRaw`SELECT 1`;
+        console.log('Prisma Client initialized successfully.');
+    } catch (error) {
+        console.error('Prisma Client initialization failed:', error);
+        throw error;
+    }
+}
+checkPrismaInitialization()
+
 //Login
 async function login(name) {
     try {
