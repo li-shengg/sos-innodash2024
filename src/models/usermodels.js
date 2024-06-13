@@ -18,8 +18,8 @@ checkPrismaInitialization()
 
 //Login
 async function login(name) {
-    checkPrismaInitialization()
     try {
+        checkPrismaInitialization()
         const user = await prisma.users.findFirst({
             where: { name },
             select: {
