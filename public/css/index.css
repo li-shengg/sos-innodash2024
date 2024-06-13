@@ -54,6 +54,8 @@ label{
 }
 
 #loginButton{
+    display: flex;
+    gap: 5px;
     color: white;
     background-color: var(--bg-primary);
     padding: 11px;
