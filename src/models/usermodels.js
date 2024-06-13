@@ -12,10 +12,12 @@ async function checkPrismaInitialization() {
         throw error;
     }
 }
+
 checkPrismaInitialization()
 
 //Login
 async function login(name) {
+    checkPrismaInitialization()
     try {
         const user = await prisma.users.findFirst({
             where: { name },
