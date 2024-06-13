@@ -26,7 +26,7 @@ async function createTablesAndInsertData() {
             );
 
             -- Create Cars table
-            CREATE TABLE Cars (
+            CREATE TABLE cars (
                 carid INT PRIMARY KEY AUTO_INCREMENT,
                 cartype VARCHAR(255) NOT NULL,
                 carplate VARCHAR(255) NOT NULL,

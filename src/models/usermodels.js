@@ -6,8 +6,8 @@ const pool=require("../services/db")
 module.exports.login = (data, callback) => {
 
     const SQLSTATEMENT = `
-        SELECT * FROM users
-        WHERE users.name=?;
+        SELECT * FROM Users
+        WHERE Users.name=?;
     `;
 
     VALUES = [data.username];
