@@ -33,6 +33,7 @@ async function createTablesAndInsertData() {
                 date DATE,
                 time_wash TIME,
                 time_pay TIME,
+                total_paid DECIMAL(10,2),
                 tips DECIMAL(10,2),
                 tips_for VARCHAR(255)
             );
@@ -44,13 +45,13 @@ async function createTablesAndInsertData() {
                 ('Alice', '$2b$10$D9oLjZBRej3e5lNIXViTPuXpaT1MhixLYInJVBxBvM4z8MonHYYFK');
 
             -- Insert initial cars
-            INSERT INTO Cars (cartype, carplate, date, time_wash,time_pay, tips,tips_for) VALUES
-                ('SaloonCar', 'ABC123', CURRENT_DATE, CURRENT_TIME,CURRENT_TIME, 10.0,"MINDS"),
-                ('MPV_SUV_Minivan', 'XYZ456', CURRENT_DATE, CURRENT_TIME,CURRENT_TIME, 5.0,"John Doe"),
-                ('LargeVan', 'LMN789', CURRENT_DATE, CURRENT_TIME,CURRENT_TIME, 7.0,"MINDS"),
-                ('Minibus', 'JKL012', CURRENT_DATE, CURRENT_TIME,CURRENT_TIME, 12.0,"Jane Doe"),
-                ('Taxi_Saloon', 'GHI345', CURRENT_DATE, CURRENT_TIME,CURRENT_TIME, 8.0,"MINDS"),
-                ('Taxi_SUV', 'DEF678', CURRENT_DATE, CURRENT_TIME,CURRENT_TIME, 6.0,"MINDS");
+            INSERT INTO Cars (cartype, carplate, date, time_wash,time_pay,total_paid, tips,tips_for) VALUES
+                ('SaloonCar', 'ABC123', '2023-04-16', CURRENT_TIME,CURRENT_TIME,22.0, 10.0,"MINDS"),
+                ('MPV_SUV_Minivan', 'XYZ456', CURRENT_DATE, CURRENT_TIME,CURRENT_TIME,18.0, 5.0,"John Doe"),
+                ('LargeVan', 'LMN789', CURRENT_DATE, CURRENT_TIME,CURRENT_TIME,24.0, 7.0,"MINDS"),
+                ('Minibus', 'JKL012', CURRENT_DATE, CURRENT_TIME,CURRENT_TIME,34.0, 12.0,"Jane Doe"),
+                ('Taxi_Saloon', 'GHI345', CURRENT_DATE, CURRENT_TIME,CURRENT_TIME,13.0, 8.0,"MINDS"),
+                ('Taxi_SUV', 'DEF678', CURRENT_DATE, CURRENT_TIME,CURRENT_TIME,14.0, 6.0,"MINDS");
         `;
 
         pool.query(SQLSTATEMENT, (error, results, fields) => {
