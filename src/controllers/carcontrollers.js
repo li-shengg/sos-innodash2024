@@ -83,8 +83,9 @@ module.exports.addcar = (req, res, next) => {
                 if(results.affectedRows == 0){
                     res.status(409).json({message: "Car not Added. Please try again"}); 
                 } else {
-                    console.log("New Car Added:",results)
-                    next();
+                    res.status(201).json({
+                        message:'Car Added'
+                    })
                 }
             }
         };
