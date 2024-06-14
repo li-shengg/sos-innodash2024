@@ -97,38 +97,6 @@ module.exports.addcar = (req, res, next) => {
     }
 };
 
-//Wasing Status
-module.exports.updatewashingstatus = (req, res, next) => {
-    try { 
-        const data={
-            carplate:req.body.carplate
-        }
-        if(data.carplate==undefined||data.carplate==""){
-            res.status(400).json("Car Plate Undefined or empty")
-            return;
-        }
-        const callback = (error, results) => {
-            if(error){
-                console.error("Error updating car washing status: ", error);
-                res.status(500).json(error);
-            } else {
-                    if(results.affectedRows==0){
-                        res.status(404).json("No Such CarPlate")
-                    }else{
-                    console.log("Car Wash Status Successfully Updated:",results)
-                    res.status(200).json({"Message":"Car Wash Status Successfully Updated"
-                    })
-                    }
-            }
-        };
-        model.updatewashingstatus(data,callback);
-
-    } catch (error) {
-        console.error("Error Selecting: ", error);
-        res.status(500).json(error);
-    }
-};
-
 
 //Wasing Status
 module.exports.updatepaymentstatus = (req, res, next) => {
@@ -162,9 +130,7 @@ module.exports.updatepaymentstatus = (req, res, next) => {
             }
 
             console.log("Car wash status successfully updated:", results);
-            res.status(200).json({ message: "Car wash status successfully updated",
-                                   "car_details":results[1][0]
-             });
+            res.status(200).json({ message: "Payment successfully updated"});
         };
 
         model.updatepaymentstatus(data, callback);

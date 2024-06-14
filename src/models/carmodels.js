@@ -43,17 +43,6 @@ module.exports.selectallcars = (callback) => {
 };
 
 
-module.exports.updatewashingstatus = (data,callback) => {
-
-    const SQLSTATEMENT = `
-        UPDATE Cars SET time_pay=CURRENT_TIME
-        WHERE carplate=?;
-    `;
-    const VALUES=[data.carplate]
-    pool.query(SQLSTATEMENT,VALUES,callback);
-};
-
-
 module.exports.updatepaymentstatus = (data, callback) => {
     // Payment Details
     let cost;
@@ -105,12 +94,10 @@ module.exports.updatepaymentstatus = (data, callback) => {
 
         const SQLSTATEMENT2 = `
             UPDATE Cars 
-            SET total_paid=?,tips=?, tips_for=?
+            SET total_paid=?,tips=?, tips_for=?,time_pay=CURRENT_TIME
             WHERE carplate=?
             ORDER BY carid DESC 
             LIMIT 1;
-
-            SELECT * FROM Cars WHERE carplate=?;
 
         `;
         const VALUES2 = [data.totalpaid,tips, data.tips_for, data.carplate,data.carplate];

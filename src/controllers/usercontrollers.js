@@ -44,6 +44,47 @@ module.exports.login = (req, res, next) => {
     }
 };
 
+module.exports.getusername = (req, res, next) => {
+    try { 
+        const requiredFields = ['userid'];
+
+
+        for (const field of requiredFields) {
+            if (req.body[field] === undefined || req.body[field] === "") {
+                res.status(400).json({ message: `${field} is undefined or empty` });
+                return;
+            }
+        };
+        const data = {
+            userid: req.body.userid
+        };
+
+        const callback = (error, results) => {
+            if(error){
+                console.error("Error getting username callback: ", error);
+                res.status(500).json(error);
+            } else {
+               
+                if(results.length == 0){
+                    res.status(404).json({message: "User not found"}); 
+                } else {
+                    console.log("Results:",results)
+                    res.status(200).json(results[0].name)
+                }
+            }
+        };
+
+        model.getusername(data, callback);
+
+    } catch (error) {
+        console.error("Error getting username: ", error);
+        res.status(500).json(error);
+    }
+};
+
+
+
+
 // //Login
 // async function handleLogin(req, res, next) {
 //     try {
