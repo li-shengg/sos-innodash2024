@@ -37,7 +37,6 @@ module.exports.generateToken = (req, res, next) => {
         res.status(500).json(err);
       } else {
         res.locals.token = token;
-      
         next();
       }
     };
@@ -52,8 +51,10 @@ module.exports.sendToken = (req, res, next) => {
     res.status(200).json({
       message: res.locals.message,
       token: res.locals.token,
-      UserId:res.locals.userId
+      userId:res.locals.userId
     });
+
+    console.log(res.locals.userId)
   };
 
   
