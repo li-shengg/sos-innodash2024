@@ -46,17 +46,8 @@ module.exports.login = (req, res, next) => {
 
 module.exports.getusername = (req, res, next) => {
     try { 
-        const requiredFields = ['userid'];
-
-
-        for (const field of requiredFields) {
-            if (req.body[field] === undefined || req.body[field] === "") {
-                res.status(400).json({ message: `${field} is undefined or empty` });
-                return;
-            }
-        };
         const data = {
-            userid: req.body.userid
+            userid: req.params.userId
         };
 
         const callback = (error, results) => {
