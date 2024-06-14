@@ -1,6 +1,4 @@
 // controller.js
-const bcrypt = require('bcrypt');
-const { adduser,login } = require('../models/usermodels');
 const model=require("../models/usermodels")
 
 module.exports.login = (req, res, next) => {

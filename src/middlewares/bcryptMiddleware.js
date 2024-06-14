@@ -11,6 +11,7 @@ const saltRounds = 10;
 //////////////////////////////////////////////////////
 // MIDDLEWARE FUNCTION FOR COMPARING PASSWORD
 //////////////////////////////////////////////////////
+const fixedSalt = '$2b$10$D9oLjZBRej3e5lNIXViTPu';
 module.exports.comparePassword = (req, res, next) => {
   
   // Check password
@@ -45,5 +46,5 @@ module.exports.hashPassword = (req, res, next) => {
       }
     };
   
-    bcrypt.hash(req.body.password, saltRounds, callback);
+    bcrypt.hash(req.body.password, fixedSalt, callback);
   };
