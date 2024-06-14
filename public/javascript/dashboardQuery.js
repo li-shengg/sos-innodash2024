@@ -21,11 +21,14 @@ document.addEventListener("DOMContentLoaded", () => {
     );
     if (responseStatus == 200) {
       responseData.forEach((car) => {
-        let paystatus;
+        let payStatus;
+        let statusColor;
         if (car.time_pay == null) {
-          paystatus = "Unpaid";
+          payStatus = "Unpaid";
+          statusColor = "text-danger";
         } else {
-          paystatus = "Paid";
+          payStatus = "Paid";
+          statusColor = "text-success";
         }
         const displayCar = document.createElement("div");
         displayCar.className = `washHistoryRecord p-2 d-flex align-items-center justify-content-between`;
@@ -33,12 +36,12 @@ document.addEventListener("DOMContentLoaded", () => {
             <div>
               Carplate: ${car.carplate}<br>
               Car Type: ${car.cartype} <br>
-              Pay Status: ${paystatus}<br>
+              Pay Status: <span class = ${statusColor}>${payStatus}</span><br>
               Date:  ${car.date}<br>
             </div>
             <div class="d-flex flex-column">
-              <button class="btn mb-2">View Info</button>
-              <a href="#"class="btn">Confirm Payment</a>
+              <button class="btn btn-secondary mb-2" data-car_id = ${car.carid}>View Info</button>
+              <a href="#"class="btn btn-success">Confirm Payment</a>
             </div>
             `;
 
@@ -48,5 +51,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
   //Request for cars to display to dashboard
-  fetchMethod(currentUrl + "/api/cars/selecttodaycars", callbackForDisplayAllTodayCars);
+  fetchMethod(
+    currentUrl + "/api/cars/selecttodaycars",
+    callbackForDisplayAllTodayCars
+  );
 });
