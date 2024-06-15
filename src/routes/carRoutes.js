@@ -11,6 +11,6 @@ router.get('/selectpastcars',controller.selectpastcars);
 router.get('/selectallcars',controller.selectallcars);
 router.get('/:carId',controller.getcar);
 router.post('/addcar', controller.addcar);
-router.put('/updatepaymentstatus',controller.updatepaymentstatus);
+router.put('/updatepaymentstatus/:carId',controller.updatepaymentstatus);
 
 module.exports = router;
