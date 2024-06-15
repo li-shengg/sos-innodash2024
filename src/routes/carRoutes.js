@@ -9,7 +9,7 @@ const controller = require('../controllers/carcontrollers');
 router.get('/selecttodaycars',controller.selecttodaycars);
 router.get('/selectpastcars',controller.selectpastcars);
 router.get('/selectallcars',controller.selectallcars);
-router.get('/getcar',controller.getcar);
+router.get('/:carId',controller.getcar);
 router.post('/addcar', controller.addcar);
 router.put('/updatepaymentstatus',controller.updatepaymentstatus);
 

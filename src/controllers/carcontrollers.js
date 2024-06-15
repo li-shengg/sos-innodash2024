@@ -56,7 +56,7 @@ module.exports.selectallcars = (req, res, next) => {
 module.exports.getcar = (req, res, next) => {
     try { 
         const data={
-            carid:req.body.carid
+            carid:req.params.carId
         }
         if(data.carid==undefined||data.carid==""){
             res.status(400).json({message:"CarId undefined or blank"})
@@ -72,7 +72,7 @@ module.exports.getcar = (req, res, next) => {
                     return
                 }
                     console.log("Successfully Selected Car by ID:",results)
-                    res.status(200).json(results)
+                    res.status(200).json(results[0])
             }
         };
         model.getcar(data,callback);
