@@ -27,6 +27,16 @@ module.exports.getusername = (data, callback) => {
     pool.query(SQLSTATEMENT, VALUES, callback);
 };
 
+module.exports.getall = (callback) => {
+
+    const SQLSTATEMENT = `
+        SELECT userid,name FROM Users
+    `;
+
+    pool.query(SQLSTATEMENT, callback);
+};
+
+
 // const { PrismaClient } = require('@prisma/client');
 // const prisma = new PrismaClient();
 

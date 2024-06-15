@@ -53,6 +53,35 @@ module.exports.selectallcars = (req, res, next) => {
     }
 };
 
+module.exports.getcar = (req, res, next) => {
+    try { 
+        const data={
+            carid:req.body.carid
+        }
+        if(data.carid==undefined||data.carid==""){
+            res.status(400).json({message:"CarId undefined or blank"})
+            return;
+        }
+        const callback = (error, results) => {
+            if(error){
+                console.error(`Error selecting car by id:${data.carid} `, error);
+                res.status(500).json(error);
+            } else {
+                if(results.length==0){
+                    res.status(404).json({message:"Car not found"})
+                    return
+                }
+                    console.log("Successfully Selected Car by ID:",results)
+                    res.status(200).json(results)
+            }
+        };
+        model.getcar(data,callback);
+
+    } catch (error) {
+        console.error("Error Selecting: ", error);
+        res.status(500).json(error);
+    }
+};
 
 module.exports.addcar = (req, res, next) => {
     try { 

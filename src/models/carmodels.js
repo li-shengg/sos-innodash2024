@@ -21,6 +21,17 @@ module.exports.selectpastcars = (callback) => {
     pool.query(SQLSTATEMENT,callback);
 };
 
+module.exports.getcar = (data,callback) => {
+    const SQLSTATEMENT = `
+       SELECT * FROM Cars
+       WHERE carid=?
+    `;
+    const VALUES=[data.carid]
+
+
+    pool.query(SQLSTATEMENT,VALUES,callback);
+};
+
 module.exports.addcar = (data, callback) => {
 
     const SQLSTATEMENT = `
