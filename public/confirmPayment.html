@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Confirm Payment</title>
+    <!--========================================================== CSS ==========================================================-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/confirmPayment.css" />
+    <!--========================================================== Javascript ==========================================================-->
+    <!--Query Commands Javascript-->
+    <script
+      src="javascript/queryCommands.js"
+      type="text/javascript"
+      defer
+    ></script>
+    <!--Get Current URL Javascript-->
+    <script
+      src="javascript/getCurrentURL.js"
+      type="text/javascript"
+      defer
+    ></script>
+    <script
+      src="javascript/confirmPaymentQuery.js"
+      type="text/javascript"
+      defer
+    ></script>
+    <script
+    src="javascript/confirmPayment.js"
+    type="text/javascript"
+    defer
+  ></script>
+  </head>
+
+  <body>
+    <!--Nav Bar-->
+    <nav class="py-2 px-3">
+      <a href="dashboard.html" class="d-flex align-items-center">
+        <svg
+          class="w-6 h-6 text-gray-800 dark:text-white"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M5 12h14M5 12l4-4m-4 4 4 4"
+          />
+        </svg>
+        Back</a
+      >
+    </nav>
+
+    <!--Image-->
+    <div class="d-flex justify-content-center mt-5">
+      <img src="images/carWash.png" alt="Car Wash Image" class="img-100" />
+    </div>
+
+    <!--Header-->
+    <header class="py-2 mx-3 text-center border-bottom border-secondary">
+      <h1>Confirm Payment</h1>
+      <p class="lh-lg">
+        Please confirm the payment details for car plate:
+        <br />
+        <span class="h2 mt-2 fw-bold" id="carPlateDisplay"
+          ><!--Display Car Plate--></span
+        >
+      </p>
+    </header>
+
+    <!--Wash Details-->
+    <div class="py-2 px-3 d-flex justify-content-between">
+      <div>Car Type: <span id="carTypeDisplay"></span></div>
+      <div>Wash Cost: <span id="washCostDisplay"></span></div>
+    </div>
+
+    <!--Form-->
+    <form id="confirmPaymentForm" class="py-2 px-3">
+      <div class="mb-3">
+        <label
+          for="confirmTotalPaidInput"
+          class="form-label text-muted d-flex align-items-center"
+          ><svg
+            class="w-6 h-6 text-gray-800 dark:text-white me-2"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-width="1.5"
+              d="M8 7V6a1 1 0 0 1 1-1h11a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-1M3 18v-7a1 1 0 0 1 1-1h11a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Zm8-3.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"
+            />
+          </svg>
+
+          Total Paid:</label
+        >
+        <input
+          type="number"
+          class="form-control"
+          id="confirmTotalPaidInput"
+          aria-describedby="emailHelp"
+          required
+        />
+      </div>
+      <div class="mb-4">
+        <label
+          for="confirmTipsInput"
+          class="form-label text-muted d-flex align-items-center"
+        >
+          <?xml version="1.0" encoding="UTF-8"?><svg
+            width="24px"
+            height="24px"
+            viewBox="0 0 24 24"
+            stroke-width="1"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            color="#000000"
+            class="me-2"
+          >
+            <path
+              d="M16 13C13.2386 13 11 11.8807 11 10.5C11 9.11929 13.2386 8 16 8C18.7614 8 21 9.11929 21 10.5C21 11.8807 18.7614 13 16 13Z"
+              stroke="#000000"
+              stroke-width="1"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+            <path
+              d="M11 14.5C11 15.8807 13.2386 17 16 17C18.7614 17 21 15.8807 21 14.5"
+              stroke="#000000"
+              stroke-width="1"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+            <path
+              d="M3 9.5C3 10.8807 5.23858 12 8 12C9.12583 12 10.1647 11.814 11.0005 11.5"
+              stroke="#000000"
+              stroke-width="1"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+            <path
+              d="M3 13C3 14.3807 5.23858 15.5 8 15.5C9.12561 15.5 10.1643 15.314 11 15.0002"
+              stroke="#000000"
+              stroke-width="1"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+            <path
+              d="M3 5.5V16.5C3 17.8807 5.23858 19 8 19C9.12563 19 10.1643 18.8139 11 18.5"
+              stroke="#000000"
+              stroke-width="1"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+            <path
+              d="M13 8.5V5.5"
+              stroke="#000000"
+              stroke-width="1"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+            <path
+              d="M11 10.5V18.5C11 19.8807 13.2386 21 16 21C18.7614 21 21 19.8807 21 18.5V10.5"
+              stroke="#000000"
+              stroke-width="1"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+            <path
+              d="M8 8C5.23858 8 3 6.88071 3 5.5C3 4.11929 5.23858 3 8 3C10.7614 3 13 4.11929 13 5.5C13 6.88071 10.7614 8 8 8Z"
+              stroke="#000000"
+              stroke-width="1"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+          </svg>
+          Tips:
+        </label>
+        <input
+          type="number"
+          class="form-control"
+          id="confirmTipsInput"
+          aria-describedby="emailHelp"
+          required
+          disabled
+        />
+      </div>
+      <div class="mb-4">
+        <label
+          for="confirmTipsToInput"
+          class="form-label text-muted d-flex align-items-center"
+          ><?xml version="1.0" encoding="UTF-8"?><svg
+            width="24px"
+            height="24px"
+            stroke-width="1"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            color="#000000"
+            class="me-2"
+          >
+            <path
+              d="M17 20V4M17 4L20 7M17 4L14 7"
+              stroke="#000000"
+              stroke-width="1"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+            <path
+              d="M7 4V20M7 20L10 17M7 20L4 17"
+              stroke="#000000"
+              stroke-width="1"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+          </svg>
+          Tips To:</label
+        >
+        <select class="form-select" id="confirmTipsToInput" required>
+          <option selected>Choose...</option>
+          <option value="MINDS">MINDS</option>
+        </select>
+      </div>
+      <div class="d-flex flex-column mt-4">
+        <button
+          id="confirmPaymentButton"
+          type="submit"
+          class="btn btn-primary mb-2"
+        >
+          Confirm
+        </button>
+        <button id="cancleButton" class="btn">Cancle</button>
+      </div>
+    </form>
+  </body>
+</html>

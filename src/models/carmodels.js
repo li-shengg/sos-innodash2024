@@ -47,66 +47,15 @@ module.exports.selectallcars = (callback) => {
 
 
 module.exports.updatepaymentstatus = (data, callback) => {
-    // Payment Details
-    let cost;
 
-    const SQLSTATEMENT1 = `
-        SELECT * FROM Cars WHERE carplate=? ORDER BY carid DESC LIMIT 1
-    `;
-    const VALUES1 = [data.carplate];
-
-    pool.query(SQLSTATEMENT1, VALUES1, (err, res) => {
-        if (err) {
-            return callback(err);
-        }
-
-        if (res.length === 0) {
-            return callback(new Error("No Such Car Plate"));
-        }
-
-        const cartype = res[0].cartype;
-        console.log(cartype)
-        switch (cartype) {
-            case "SaloonCar":
-                cost = 12;
-                break;
-            case "MPV_SUV_Minivan":
-                cost = 13;
-                break;
-            case "LargeVan":
-                cost = 17;
-                break;
-            case "Minibus":
-                cost = 22;
-                break;
-            case "Taxi_Saloon":
-                cost = 5;
-                break;
-            case "Taxi_SUV":
-                cost = 8;
-                break;
-            default:
-                return callback(new Error("Unknown car type"));
-        }
-     
-        const totalpaid = data.totalpaid;
-        const tips = totalpaid - cost;
-        if (tips < 0) {
-            return callback(new Error(`Total Paid cannot be less than washing cost: $${cost}`));
-        }
-
-        const SQLSTATEMENT2 = `
-            UPDATE Cars 
+    const SQLSTATEMENT = `
+         UPDATE Cars 
             SET total_paid=?,tips=?, tips_for=?,time_pay=CURRENT_TIME
-            WHERE carplate=?
-            ORDER BY carid DESC 
-            LIMIT 1;
+            WHERE carid=?
+    `;
+    const VALUES = [data.totalpaid,data.tips, data.tips_for, data.carid];
 
-        `;
-        const VALUES2 = [data.totalpaid,tips, data.tips_for, data.carplate,data.carplate];
-
-        pool.query(SQLSTATEMENT2, VALUES2, callback);
-    });
+    pool.query(SQLSTATEMENT, VALUES, callback);
 };
 
 
