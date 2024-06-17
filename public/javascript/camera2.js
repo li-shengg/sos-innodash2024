@@ -46,4 +46,7 @@ takePhotoButton.addEventListener('click', () => {
     downloadLink.download = 'selfie.png';
     downloadLink.textContent = 'Download Photo';
     document.body.appendChild(downloadLink);
+    var base64_string=downloadLink.href
+    base64_string = base64_string.split(',')[1]
+    console.log(base64_string)
 });

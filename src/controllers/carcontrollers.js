@@ -19,20 +19,6 @@ module.exports.selecttodaycars = (req, res, next) => {
     }
 };
 
-module.exports.selectpastcars = (req, res, next) => {
-    try {
-        model.selectpastcars((err, results) => {
-            if (err) {
-                console.error("Error selecting cars that do not belong to today: ", err);
-                return res.status(500).json({ error: err.message });
-            }
-            res.status(200).json(results);
-        });
-    } catch (error) {
-        console.error("Error in getNotTodayCars controller: ", error);
-        res.status(500).json({ error: error.message });
-    }
-};
 
 module.exports.selectallcars = (req, res, next) => {
     try { 

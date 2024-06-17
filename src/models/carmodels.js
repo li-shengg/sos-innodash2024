@@ -12,14 +12,6 @@ module.exports.selecttodaycars = (callback) => {
     pool.query(SQLSTATEMENT, callback);
 };
 
-module.exports.selectpastcars = (callback) => {
-    const SQLSTATEMENT = `
-       SELECT * FROM Cars
-       WHERE DATE(date) != CURDATE()
-    `;
-
-    pool.query(SQLSTATEMENT,callback);
-};
 
 module.exports.getcar = (data,callback) => {
     const SQLSTATEMENT = `
