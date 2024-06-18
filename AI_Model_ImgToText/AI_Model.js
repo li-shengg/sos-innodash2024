@@ -1,16 +1,20 @@
 const { exec } = require('child_process');
+const path = require('path');
 
 function predictjson(callback) {
-    const pythonScriptPath = 'AI_Model.py'; // Update with the actual path
-    const command = `python ${pythonScriptPath}`;
+    const pythonScriptPath = path.join(__dirname, 'AI_Model.py');
+    const command = `python "${pythonScriptPath}"`;
 
     exec(command, (error, stdout, stderr) => {
         if (error) {
-            console.error(`exec error: ${error}`);
+            console.error(`Execution error: ${error.message}`);
             callback(error, null);
-        } else {
-            callback(null, stdout.trim());
+            return;
         }
+        if (stderr) {
+            console.error(`Python stderr: ${stderr}`);
+        }
+        callback(null, stdout.trim());
     });
 }
 
