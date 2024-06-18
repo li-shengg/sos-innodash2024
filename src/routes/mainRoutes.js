@@ -20,5 +20,4 @@ router.post("/login", userController.login, bcryptMiddleware.comparePassword, jw
 // router.post("/register", userController.checkUsernameOrEmailExist, bcryptMiddleware.hashPassword, userController.register);
 router.get("/verify",jwtMiddleware.verifyToken)
 
-
 module.exports=router;
