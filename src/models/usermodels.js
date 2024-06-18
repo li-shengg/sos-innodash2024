@@ -49,7 +49,7 @@ module.exports.register = (data, callback) => {
     pool.query(SQLSTATEMENT, VALUES,callback);
 };
 
-module.exports.readUserByEmailAndUsername = (data, callback) => {
+module.exports.readUserByUsername = (data, callback) => {
 
     const SQLSTATEMENT = `
         SELECT *
