@@ -17,7 +17,7 @@ const jwtMiddleware=require("../middlewares/jwtMiddleware")
 
 // Routes
 router.post("/login", userController.login, bcryptMiddleware.comparePassword, jwtMiddleware.generateToken, jwtMiddleware.sendToken);
-// router.post("/register", userController.checkUsernameOrEmailExist, bcryptMiddleware.hashPassword, userController.register);
+router.post("/register", userController.checkUsernameOrEmailExist, bcryptMiddleware.hashPassword, userController.register);
 router.get("/verify",jwtMiddleware.verifyToken)
 
 module.exports=router;

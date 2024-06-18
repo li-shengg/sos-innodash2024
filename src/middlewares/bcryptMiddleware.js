@@ -45,6 +45,5 @@ module.exports.hashPassword = (req, res, next) => {
         next();
       }
     };
-  
     bcrypt.hash(req.body.password, fixedSalt, callback);
   };

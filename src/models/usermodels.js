@@ -37,32 +37,27 @@ module.exports.getall = (callback) => {
 };
 
 
-// const { PrismaClient } = require('@prisma/client');
-// const prisma = new PrismaClient();
+module.exports.register = (data, callback) => {
 
-// //Login
-// async function login(name) {
-//     try {
-//         const user = await prisma.users.findFirst({
-//             where: { name },
-//             select: {
-//                 userid: true,
-//                 password: true,
-//             },
-//         });
-//         return user;
-//     } catch (error) {
-//         console.error("Error logging in:", error);
-//         throw error;
-//     }
-// }
+    const SQLSTATEMENT = `
+        INSERT INTO Users (name,password)
+        VALUES (?, ?);
+    `;
 
-// //Add new user
-// async function adduser() {
-//     return await prisma.users.findMany();
-// }   
+    VALUES = [data.name, data.password];
 
-// module.exports = {
-//     adduser,
-//     login
-// };
+    pool.query(SQLSTATEMENT, VALUES,callback);
+};
+
+module.exports.readUserByEmailAndUsername = (data, callback) => {
+
+    const SQLSTATEMENT = `
+        SELECT *
+        FROM users
+        WHERE users.name = ?;
+    `;
+
+    VALUES = [data.name];
+
+    pool.query(SQLSTATEMENT, VALUES, callback);
+};

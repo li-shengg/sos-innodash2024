@@ -94,56 +94,65 @@ module.exports.getall = (req, res, next) => {
     }
 };
 
+module.exports.checkUsernameOrEmailExist = (req, res, next) => {
+    try {
+        const requiredFields = ['name','password'];
 
+        for (const field of requiredFields) {
+            if (req.body[field] === undefined || req.body[field] === "") {
+                res.status(400).json({ message: `${field} is undefined or empty` });
+                return;
+            }
+        };
+    
+        const data = {
+            name: req.body.name
+        };
 
-// //Login
-// async function handleLogin(req, res, next) {
-//     try {
-//         const requiredFields = ['username', 'password'];
+        const callback = (error, results) => {
+            if(error){
+                console.error("Error readUserByEmailAndUsername callback: ", error);
+                res.status(500).json(error);
+            } else {
         
-//         for (const field of requiredFields) {
-//             if (!req.body[field]) {
-//                 res.status(400).json({ message: `${field} is undefined or empty` });
-//                 return;
-//             }
-//         }
+                if(results.length!=0){
+                    res.status(409).json({message: "Username already exists"});
+                } else {
+                    next();
+                }
+            }
+        };
+        model.readUserByEmailAndUsername(data, callback);
 
-//         const { username, password } = req.body;
+    } catch (error) {
+        console.error("Error readUserByEmailAndUsername: ", error);
+        res.status(500).json(error);
+    }
 
-//         const user = await login(username);
+};
 
-//         if (!user) {
-//             res.status(404).json({ message: "User not found" });
-//             return;
-//         }
+module.exports.register = (req, res, next) => {
+    try { 
+        const data = {
+            name: req.body.name,
+            password: res.locals.hash
+        };
 
-//         // Compare the hashed password
-//         const isPasswordValid = await bcrypt.compare(password, user.password);
-//         if (!isPasswordValid) {
-//             res.status(401).json({ message: "Invalid password" });
-//             return;
-//         }
+        const callback = (error, results) => {
+            if(error){
+                console.error("Error register callback: ", error);
+                res.status(500).json(error);
+            } else {
+                res.locals.message=
+                    `User ${data.name} created successfully.`
+                    res.status(201).json({message:res.locals.message})
+            }
+        };
 
-//         res.locals.userId = user.userid;
-//         res.locals.hash = user.password;
-//         next();
-//     } catch (error) {
-//         console.error("Error login: ", error);
-//         res.status(500).json(error);
-//     }
-// }
+        model.register(data, callback);
 
-// //Add user
-// async function Adduser(req, res) {
-//     try {
-//         const cars = await adduser();
-//         res.status(200).json(cars);
-//     } catch (e) {
-//         res.status(400).json({ error: e.message });
-//     }
-// }
-
-// module.exports = {
-//     Adduser,
-//     handleLogin
-// };
+    } catch (error) {
+        console.error("Error register: ", error);
+        res.status(500).json(error);
+    }
+};
