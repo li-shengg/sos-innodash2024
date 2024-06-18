@@ -6,14 +6,10 @@
 }
 #confirmCarWashButton{
     padding: 12px 0;
-    background-color: var(--bg-primary);
-    border: none;
 }
 
 #cancleButton{
     padding: 12px 0;
-    background-color: transparent;
-    border: 1px solid;
 }
 
 .form-control:disabled, .form-control[disabled] {
