@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Log In</title>
+    <title>Register</title>
     <!--========================================================== CSS ==========================================================-->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -11,7 +11,7 @@
     />
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/app.css" />
-    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/register.css" />
     <!--Query Commands Javascript-->
     <script
       src="javascript/queryCommands.js"
@@ -25,7 +25,7 @@
       defer
     ></script>
     <script
-      src="javascript/loginQuery.js"
+      src="javascript/registerQuery.js"
       type="text/javascript"
       defer
     ></script>
@@ -41,33 +41,41 @@
         />
       </a>
     </nav>
-
     <main>
-      <div id="loginContainer">
-        <h1 id="loginHeader">Login</h1>
+      <div id="registerContainer">
+        <h1 id="registerHeader">Register</h1>
 
         <!--Login form-->
-        <form id="loginForm">
+        <form id="registerForm">
           <div>
-            <label for="usernameLoginInput">Name</label>
+            <label for="usernameRegisterInput">Name</label>
             <input
               type="text"
-              id="usernameLoginInput"
+              id="usernameRegisterInput"
               placeholder="Name..."
               required
             />
           </div>
           <div>
-            <label for="passwordLoginInput">Password</label>
+            <label for="passwordRegisterInput">Password</label>
             <input
               type="password"
-              id="passwordLoginInput"
+              id="passwordRegisterInput"
               placeholder="Password..."
               required
             />
           </div>
-          <button type="submit" id="loginButton">
-            Login
+          <div>
+            <label for="confirmPasswordRegisterInput">Confirm Password</label>
+            <input
+              type="password"
+              id="confirmPasswordRegisterInput"
+              placeholder="Password..."
+              required
+            />
+          </div>
+          <button type="submit" id="registerButton">
+            Register
             <?xml version="1.0" encoding="UTF-8"?><svg
               width="24px"
               height="24px"
@@ -95,16 +103,20 @@
           </button>
 
           <div id="warningCard" class="card border-danger mb-3 d-none">
-            <div class="card-body text-danger d-flex justify-content-between align-items-center">
+            <div
+              class="card-body text-danger d-flex justify-content-between align-items-center"
+            >
               <i class="fa-solid fa-circle-exclamation me-2 lh-base"></i>
               <p id="warningText" class="my-auto"></p>
-              <button class="btn text-danger" id="removeWarningButton"><i class="fa-solid fa-xmark"></i></button>
+              <button class="btn text-danger" id="removeWarningButton">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
             </div>
           </div>
         </form>
-        <p id="registerOption">
-          Don't have an account?
-          <span><a href="register.html">Register</a></span>
+        <p id="loginOption">
+          Already have an account?
+          <span><a href="index.html">Log In</a></span>
         </p>
       </div>
     </main>
