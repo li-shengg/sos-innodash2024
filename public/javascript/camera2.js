@@ -1,4 +1,4 @@
-import { funcall } from './AI_Model4.js'; // Import the funcall function from AI_Model4.js
+import { funcall } from './AI_Model5.js'; // Import the funcall function from AI_Model4.js
 
 const webcamElement = document.getElementById('webcam');
 const canvasElement = document.getElementById('canvas');
@@ -31,7 +31,7 @@ async function startWebcam() {
 
 window.onload = startWebcam;
 
-takePhotoButton.addEventListener('click', () => {
+takePhotoButton.addEventListener('click', async () => {
     const context = canvasElement.getContext('2d');
     canvasElement.width = webcamElement.videoWidth;
     canvasElement.height = webcamElement.videoHeight;
@@ -47,5 +47,22 @@ takePhotoButton.addEventListener('click', () => {
     document.body.appendChild(downloadLink);
 
     const base64_string = picture.split(',')[1];
-    funcall(base64_string); // Call the funcall function from AI_Model4.js
+
+    // Call the funcall function and handle the response
+    try {
+        const prediction = await funcall(base64_string);
+        console.log("Prediction received:", prediction);
+
+        // Display the prediction
+        const predictionDisplay = document.createElement('div');
+        predictionDisplay.className = 'alert alert-success';
+        predictionDisplay.textContent = `Prediction: ${prediction}`;
+        document.body.appendChild(predictionDisplay);
+    } catch (err) {
+        console.error("Error during prediction:", err);
+        const errorMsg = document.createElement('div');
+        errorMsg.className = 'alert alert-danger';
+        errorMsg.textContent = `Failed to get prediction: ${err.message}`;
+        document.body.appendChild(errorMsg);
+    }
 });
