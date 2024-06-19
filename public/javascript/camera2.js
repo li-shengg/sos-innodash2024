@@ -1,5 +1,3 @@
-import { funcall } from './AI_Model5.js'; // Import the funcall function from AI_Model4.js
-
 const webcamElement = document.getElementById('webcam');
 const canvasElement = document.getElementById('canvas');
 const takePhotoButton = document.getElementById('take-photo');
@@ -30,7 +28,6 @@ async function startWebcam() {
 }
 
 window.onload = startWebcam;
-let base64_string;
 
 takePhotoButton.addEventListener('click', async () => {
     const context = canvasElement.getContext('2d');
@@ -46,7 +43,34 @@ takePhotoButton.addEventListener('click', async () => {
     downloadLink.download = 'selfie.png';
     downloadLink.textContent = 'Download Photo';
     document.body.appendChild(downloadLink);
+    var base64_String = picture.split(',')[1];
 
-    // funcall(base64_string); // Call the funcall function from AI_Model4.js
+//Callback for AI
+    const data={
+    "base64_String":base64_String
+    }
+    console.log(data)
+
+    const callbackForAi = (responseStatus, responseData) => {
+
+      
+        if (responseStatus == 200) {
+            console.log(responseData)
+
+        }else if(responseStatus==400){
+            console.log(responseData)
+
+        }else{
+            console.log("Ai has failed")
+        }
+      };
+
+      fetchMethod(
+        currentUrl + `/api/AI_classify`,
+        callbackForAi,
+        "POST",
+        data
+      );
+
 });
 

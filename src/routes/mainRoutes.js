@@ -20,6 +20,6 @@ const AI=require("../middlewares/AI_Model")
 router.post("/login", userController.login, bcryptMiddleware.comparePassword, jwtMiddleware.generateToken, jwtMiddleware.sendToken);
 router.post("/register", userController.checkUsernameExist, bcryptMiddleware.hashPassword, userController.register,jwtMiddleware.generateToken, jwtMiddleware.sendToken);
 router.get("/verify",jwtMiddleware.verifyToken)
-router.get("/AI_classify",AI.funcall)
+router.post("/AI_classify",AI.funcall)
 
 module.exports=router;

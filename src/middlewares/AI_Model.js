@@ -1,10 +1,8 @@
 const fetch = require('node-fetch');
 const { GoogleGenerativeAI } = require("@google/generative-ai");
-const { HarmCategory, HarmBlockThreshold } = require("@google/generative-ai"); 
 
 module.exports.funcall = async (req, res, next) => {
-    const base64_String = req.body.base64_String
-
+    const base64_String = req.body.base64_String;
     if (!base64_String) {
         return res.status(400).json({ error: "Base64 String not found in request body" });
     }
@@ -34,8 +32,4 @@ try{
     return res.status(500).json({ error: "Error during prediction" });
 
 }
-
-   
-
-
 };
