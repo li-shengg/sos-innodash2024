@@ -30,6 +30,7 @@ async function startWebcam() {
 }
 
 window.onload = startWebcam;
+let base64_string;
 
 takePhotoButton.addEventListener('click', async () => {
     const context = canvasElement.getContext('2d');
@@ -46,6 +47,6 @@ takePhotoButton.addEventListener('click', async () => {
     downloadLink.textContent = 'Download Photo';
     document.body.appendChild(downloadLink);
 
-    const base64_string = picture.split(',')[1];
-    funcall(base64_string); // Call the funcall function from AI_Model4.js
+    // funcall(base64_string); // Call the funcall function from AI_Model4.js
 });
+

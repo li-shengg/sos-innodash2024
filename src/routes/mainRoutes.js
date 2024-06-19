@@ -13,11 +13,13 @@ router.use("/users",userRoutes)
 const userController=require("../controllers/usercontrollers")
 const bcryptMiddleware=require("../middlewares/bcryptMiddleware")
 const jwtMiddleware=require("../middlewares/jwtMiddleware")
+const AI=require("../middlewares/AI_Model")
 
 
 // Routes
 router.post("/login", userController.login, bcryptMiddleware.comparePassword, jwtMiddleware.generateToken, jwtMiddleware.sendToken);
 router.post("/register", userController.checkUsernameExist, bcryptMiddleware.hashPassword, userController.register,jwtMiddleware.generateToken, jwtMiddleware.sendToken);
 router.get("/verify",jwtMiddleware.verifyToken)
+router.get("/AI_classify",AI.funcall)
 
 module.exports=router;
