@@ -45,7 +45,6 @@ takePhotoButton.addEventListener('click', () => {
     downloadLink.download = 'selfie.png';
     downloadLink.textContent = 'Download Photo';
     document.body.appendChild(downloadLink);
-
     const base64_string = picture.split(',')[1];
     funcall(base64_string); // Call the funcall function from AI_Model4.js
 });
