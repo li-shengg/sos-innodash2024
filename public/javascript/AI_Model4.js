@@ -5,7 +5,7 @@ const { HarmCategory, HarmBlockThreshold } = require("@google/generative-ai"); /
 // Access your API key as an environment variable (see "Set up your API key" above)
 const genAI = new GoogleGenerativeAI("AIzaSyCDb2rdAf_CSha2-eACf4P-sQqSDbspwPU");
 
-const funcall = async (base64_String) => {
+export const funcall = async (base64_String) => {
     const model = genAI.getGenerativeModel({
         model: "gemini-1.5-flash-latest",
        
@@ -23,7 +23,7 @@ const result = await model.generateContent([prompt, image]);
 console.log(result.response.text());
 }
 
-console.log(base64_String)
+// console.log(base64_String)
 
 // funcall(base64_String);
 

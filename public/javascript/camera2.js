@@ -1,5 +1,3 @@
-import { funcall } from './AI_Model4.js'; // Import the funcall function from AI_Model4.js
-
 const webcamElement = document.getElementById('webcam');
 const canvasElement = document.getElementById('canvas');
 const takePhotoButton = document.getElementById('take-photo');
@@ -45,6 +43,11 @@ takePhotoButton.addEventListener('click', () => {
     downloadLink.download = 'selfie.png';
     downloadLink.textContent = 'Download Photo';
     document.body.appendChild(downloadLink);
-    const base64_string = picture.split(',')[1];
-    funcall(base64_string); // Call the funcall function from AI_Model4.js
+
+    const base64StringElement = document.createElement('div');
+    base64StringElement.id="base64_string"
+    base64StringElement.style.display = 'none';
+    const base64String = picture.split(',')[1];
+    base64StringElement.textContent = base64String;
+    document.body.appendChild(base64StringElement);
 });
