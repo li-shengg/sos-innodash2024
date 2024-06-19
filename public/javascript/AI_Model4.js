@@ -1,11 +1,11 @@
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const { HarmCategory, HarmBlockThreshold } = require("@google/generative-ai"); // Import necessary classes
-const fs = require("fs");
+// const fs = require("fs");
 
 // Access your API key as an environment variable (see "Set up your API key" above)
 const genAI = new GoogleGenerativeAI("AIzaSyCDb2rdAf_CSha2-eACf4P-sQqSDbspwPU");
 
-const funcall=async(base64_String)=>{
+export const funcall = async (base64_String) => {
     const model = genAI.getGenerativeModel({
         model: "gemini-1.5-flash-latest",
        
@@ -27,4 +27,3 @@ base64_String='iVBORw0KGgoAAAANSUhEUgAABQAAAALQCAYAAADPfd1WAAAAAXNSR0IArs4c6QAAI
 
 funcall(base64_String);
 
-module.exports=funcall;

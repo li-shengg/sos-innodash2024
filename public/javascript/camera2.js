@@ -1,6 +1,7 @@
+import { funcall } from './AI_Model4.js'; // Import the funcall function from AI_Model4.js
+
 const webcamElement = document.getElementById('webcam');
 const canvasElement = document.getElementById('canvas');
-const snapSoundElement = document.getElementById('snapSound');
 const takePhotoButton = document.getElementById('take-photo');
 
 const constraints = {
@@ -36,8 +37,6 @@ takePhotoButton.addEventListener('click', () => {
     canvasElement.height = webcamElement.videoHeight;
     context.drawImage(webcamElement, 0, 0, canvasElement.width, canvasElement.height);
 
-    snapSoundElement.play();
-
     const picture = canvasElement.toDataURL('image/png');
     console.log("Picture taken");
 
@@ -46,7 +45,7 @@ takePhotoButton.addEventListener('click', () => {
     downloadLink.download = 'selfie.png';
     downloadLink.textContent = 'Download Photo';
     document.body.appendChild(downloadLink);
-    var base64_string=downloadLink.href
-    base64_string = base64_string.split(',')[1]
-    console.log(base64_string)
+
+    const base64_string = picture.split(',')[1];
+    funcall(base64_string); // Call the funcall function from AI_Model4.js
 });
