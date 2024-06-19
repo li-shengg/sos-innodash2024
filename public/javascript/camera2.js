@@ -1,3 +1,5 @@
+import { funcall } from './AI_Model5.js'; // Import the funcall function from AI_Model4.js
+
 const webcamElement = document.getElementById('webcam');
 const canvasElement = document.getElementById('canvas');
 const takePhotoButton = document.getElementById('take-photo');
@@ -29,7 +31,7 @@ async function startWebcam() {
 
 window.onload = startWebcam;
 
-takePhotoButton.addEventListener('click', () => {
+takePhotoButton.addEventListener('click', async () => {
     const context = canvasElement.getContext('2d');
     canvasElement.width = webcamElement.videoWidth;
     canvasElement.height = webcamElement.videoHeight;
@@ -44,10 +46,6 @@ takePhotoButton.addEventListener('click', () => {
     downloadLink.textContent = 'Download Photo';
     document.body.appendChild(downloadLink);
 
-    const base64StringElement = document.createElement('div');
-    base64StringElement.id="base64_string"
-    base64StringElement.style.display = 'none';
-    const base64String = picture.split(',')[1];
-    base64StringElement.textContent = base64String;
-    document.body.appendChild(base64StringElement);
+    const base64_string = picture.split(',')[1];
+    funcall(base64_string); // Call the funcall function from AI_Model4.js
 });
