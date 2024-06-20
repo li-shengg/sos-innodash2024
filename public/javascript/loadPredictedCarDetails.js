@@ -6,14 +6,12 @@ document.addEventListener("DOMContentLoaded", ()=>{
     const confirmCarTypeInput = document.getElementById('confirmCarTypeInput')
     const confirmWashCostInput = document.getElementById('confirmWashCostInput')
 
-    let updatedName;
     if(predictedCarType == "Saloon Taxi"){
-        updatedName = "Taxi (Saloon)"
+        predictedCarType = "Taxi (Saloon)"
     }else if(predictedCarType == "Taxi(Maxi cab/SUV)"){
-        updatedName = "Taxi (Maxi cab/SUV)"
+        predictedCarType = "Taxi (Maxi cab/SUV)"
     }
 
-    predictedCarType = updatedName
 
     console.log(predictedCarType)
     confirmCarPlateInput.value = predictedCarPlate
