@@ -22,7 +22,6 @@ const image = {
     mimeType: "image/png",
   },
 };
-
 try{
     const result = await model.generateContent([prompt, image]);
     console.log(result.response.text());
