@@ -22,4 +22,8 @@ router.post("/register", userController.checkUsernameExist, bcryptMiddleware.has
 router.get("/verify",jwtMiddleware.verifyToken)
 router.post("/AI_classify",AI.funcall)
 
+//Optional: For classifying car model type.
+const AI2=require("../middlewares/AI_Model2")
+router.post("/AI_identify",AI2.classify)
+
 module.exports=router;

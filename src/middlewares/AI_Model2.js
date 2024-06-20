@@ -1,7 +1,7 @@
-const fetch = require('node-fetch');
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-module.exports.funcall = async (req, res, next) => {
+
+module.exports.classify = async (req, res, next) => {
     const base64_String = req.body.base64_String;
     if (!base64_String) {
         return res.status(400).json({ error: "Base64 String not found in request body" });
@@ -13,7 +13,7 @@ module.exports.funcall = async (req, res, next) => {
        
       });
 
-    const prompt = "What numbers and alphabet do you see? Merge them in a string.Output the merged string only.";
+    const prompt = "Out of this 6 types of cars:[Saloon Car, MPV/SUV/Mini Van, Large Van, Minibus, Saloon Taxi, Taxi(Maxi cab/SUV)], which are car type do you think this is? Output car type only.";
 const image = {
   inlineData: {
     data: base64_String,
