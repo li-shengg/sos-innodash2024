@@ -46,8 +46,8 @@
 
 main {
     margin: 0;
-    max-height: 100vh;
-    overflow: hidden;
+    height: 100vh;
+    overflow-y: scroll;
 }
 
 #cameraTop {

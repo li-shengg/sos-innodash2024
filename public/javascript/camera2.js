@@ -28,7 +28,7 @@ async function startWebcam() {
     currentStream = stream; // Store the current stream globally
     webcamElement.srcObject = stream;
     console.log("Webcam started");
-    //Remove loading screen
+    //Remove loading screen      
     loadingScreen.classList.add("d-none");
 
     // Add event listener to flip camera button

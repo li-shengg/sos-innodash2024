@@ -1,10 +1,17 @@
 
 document.addEventListener("DOMContentLoaded", ()=>{
     const predictedCarPlate = localStorage.getItem('predictedCarPlate')
-    const predictedCarType = localStorage.getItem('predictedCarType')
+    let predictedCarType = localStorage.getItem('predictedCarType')
     const confirmCarPlateInput = document.getElementById('confirmCarPlateInput')
     const confirmCarTypeInput = document.getElementById('confirmCarTypeInput')
     const confirmWashCostInput = document.getElementById('confirmWashCostInput')
+
+    if(predictedCarType == "Saloon Taxi"){
+        predictedCarType = "Taxi (Saloon)"
+    }else if(predictedCarType == "Taxi(Maxi cab/SUV)"){
+        predictedCarType = "Taxi (Maxi cab/SUV)"
+    }
+
     confirmCarPlateInput.value = predictedCarPlate
     const carMapping = {
         "Saloon Car": ["SaloonCar", 12],
