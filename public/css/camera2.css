@@ -24,6 +24,7 @@
     height: 100vh;
     background: rgba(255, 255, 255);
     z-index: 9999;
+    overflow-y: scroll;
 }
 
 #imageContainer {
