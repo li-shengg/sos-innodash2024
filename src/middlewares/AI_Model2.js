@@ -13,8 +13,9 @@ module.exports.classify = async (req, res, next) => {
        
       });
 
-    const prompt = "Out of this 6 types of cars:[Saloon Car, MPV/SUV/Mini Van, Large Van, Minibus, Saloon Taxi, Taxi(Maxi cab/SUV)], which are car type do you think this is? Output car type only.";
-const image = {
+      const prompt = "Answer this two questions and give responses only please. Format the responses into an object{}: 1) Out of this 6 types of cars:[Saloon Car, MPV/SUV/Mini Van, Large Van, Minibus, Saloon Taxi, Taxi(Maxi cab/SUV)], which are car type do you think this is? Output car type only. 2)What numbers and alphabet do you see? Merge them in a string.Output the merged string only. ";
+
+      const image = {
   inlineData: {
     data: base64_String,
     mimeType: "image/png",
