@@ -32,11 +32,14 @@
     align-items: center;
     max-width: 100%;
     max-height: 100%;
+    padding: 0 30px;
   }
   
   #imageContainer img {
     max-width: 100%;
     max-height: 100%;
+    border: 1px solid black;
+    border-radius: 5px;
   }
 
 
@@ -79,6 +82,10 @@ button {
     display: grid;
     place-items: center;
     cursor: pointer;
+}
+
+.confirmBtn{
+    height: 42px;
 }
 
 .camera-ctn {
@@ -137,6 +144,12 @@ button {
 
 .shutter:active {
     transform: scale(0.8);
+}
+
+#flipCameraButton{
+    position: absolute;
+    right: 20;
+    margin-left: 15rem;
 }
 
 .switch-device {

@@ -5,6 +5,12 @@ const loadingScreen = document.getElementById("loading-screen");
 const confirmScreen = document.getElementById("confirm-screen");
 const capturedImage = document.getElementById("captured-image");
 const capturedPlate = document.getElementById("captured-plate");
+const capturedType = document.getElementById("captured-type");
+const downloadButton = document.getElementById("downloadButton");
+const retakeButton = document.getElementById("retakeButton");
+const usePhotoButton = document.getElementById("usePhotoButton");
+const flipCameraButton = document.getElementById("flipCameraButton");
+//Default: Loading screen
 
 const constraints = {
   video: {
@@ -14,11 +20,19 @@ const constraints = {
   },
 };
 
+let currentStream;
+
 async function startWebcam() {
   try {
     const stream = await navigator.mediaDevices.getUserMedia(constraints);
+    currentStream = stream; // Store the current stream globally
     webcamElement.srcObject = stream;
     console.log("Webcam started");
+    //Remove loading screen
+    loadingScreen.classList.add("d-none");
+
+    // Add event listener to flip camera button
+    flipCameraButton.addEventListener("click", flipCamera);
   } catch (err) {
     console.error(err);
     const errorMsg = document.createElement("div");
@@ -32,6 +46,18 @@ async function startWebcam() {
 }
 
 window.onload = startWebcam;
+
+document.getElementById("back-button").addEventListener("click", (event) => {
+  event.preventDefault();
+  loadingScreen.classList.add("d-none");
+  confirmScreen.classList.add("d-none");
+});
+
+retakeButton.addEventListener("click", (event) => {
+  event.preventDefault();
+  loadingScreen.classList.add("d-none");
+  confirmScreen.classList.add("d-none");
+});
 
 takePhotoButton.addEventListener("click", async () => {
   const context = canvasElement.getContext("2d");
@@ -52,11 +78,9 @@ takePhotoButton.addEventListener("click", async () => {
 
   const picture = canvasElement.toDataURL("image/png");
   console.log("Picture taken");
-  const downloadLink = document.createElement("a");
-  downloadLink.href = picture;
-  downloadLink.download = "selfie.png";
-  downloadLink.textContent = "Download Photo";
-  document.body.appendChild(downloadLink);
+  downloadButton.href = picture;
+  downloadButton.download = "selfie.png";
+  downloadButton.textContent = "Download Photo";
   var base64_String = picture.split(",")[1];
 
   //Set the captured image
@@ -74,8 +98,19 @@ takePhotoButton.addEventListener("click", async () => {
 
     if (responseStatus == 200) {
       console.log(responseData);
-      //Dipay the captured carplate
-      capturedPlate.innerText = responseData;
+
+      const objectData = JSON.parse(responseData);
+      const keys = Object.keys(objectData);
+      const carType = keys[0];
+      const carPlate = keys[1];
+
+      capturedPlate.innerText = objectData[carPlate];
+      capturedType.innerText = objectData[carType];
+
+      localStorage.setItem("predictedCarPlate", objectData[carPlate]);
+      localStorage.setItem("predictedCarType", objectData[carType]);
+
+      console.log(objectData);
     } else if (responseStatus == 400) {
       console.log(responseData);
     } else {
@@ -83,5 +118,52 @@ takePhotoButton.addEventListener("click", async () => {
     }
   };
 
-  fetchMethod(currentUrl + `/api/AI_classify`, callbackForAi, "POST", data);
+  fetchMethod(currentUrl + `/api/AI_identify`, callbackForAi, "POST", data);
 });
+
+usePhotoButton.addEventListener("click", (event) => {
+  event.preventDefault();
+  window.location.href = "confirmation.html";
+});
+
+// Function to flip the camera
+async function flipCamera() {
+  try {
+    // Get all video input devices
+    const devices = await navigator.mediaDevices.enumerateDevices();
+    const videoDevices = devices.filter(
+      (device) => device.kind === "videoinput"
+    );
+
+    // Find the current video track
+    const currentVideoTrack = currentStream.getVideoTracks()[0];
+
+    // Find the next available video device
+    const nextDeviceId = videoDevices.find(
+      (device) => device.deviceId !== currentVideoTrack.deviceId
+    );
+    if (!nextDeviceId) {
+      console.warn("No other camera device found.");
+      return;
+    }
+
+    // Stop the current stream
+    currentVideoTrack.stop();
+
+    // Get constraints for the new camera
+    const newConstraints = {
+      video: {
+        deviceId: { exact: nextDeviceId.deviceId },
+      },
+    };
+
+    // Start new stream with the flipped camera
+    const newStream = await navigator.mediaDevices.getUserMedia(newConstraints);
+    currentStream = newStream; // Update current stream
+
+    // Update video element with new stream
+    webcamElement.srcObject = newStream;
+  } catch (error) {
+    console.error("Error flipping camera:", error);
+  }
+}

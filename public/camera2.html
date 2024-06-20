@@ -19,17 +19,17 @@
   </head>
   <body>
     <!--Loading screen-->
-    <div id="loading-screen" class="d-none">
+    <div id="loading-screen">
       <div class="spinner-border" role="status">
         <span class="sr-only">Loading...</span>
       </div>
     </div>
 
     <!--confirm screen-->
-    <div id="confirm-screen" class="">
+    <div id="confirm-screen" class="d-none">
       <!--Nav Bar-->
       <nav class="py-2 px-3">
-        <button id="back-button" class="d-flex align-items-center">
+        <button id="back-button" class="d-flex align-items-center btn">
           <svg
             class="w-6 h-6 text-gray-800 dark:text-white"
             aria-hidden="true"
@@ -47,8 +47,8 @@
               d="M5 12h14M5 12l4-4m-4 4 4 4"
             />
           </svg>
-          Back</button
-        >
+          Back
+        </button>
       </nav>
 
       <!--Icon-->
@@ -86,9 +86,71 @@
         </svg>
       </div>
 
-      <h2>Captured Plate: <span id="captured-plate"></span></h2>
+      <!--Header-->
+      <header class="py-2 mx-3 text-center">
+        <h1>Confirm Car Details</h1>
+        <p>Please confirm the following car details are correct:</p>
+      </header>
+
       <div id="imageContainer">
-        <img id="captured-image" src="./images/carWash.png" alt="" />
+        <img id="captured-image" src="" alt="car" />
+      </div>
+
+      <div class="mt-3 d-flex align-items-center flex-column">
+        <p>Captured Plate: <span id="captured-plate"></span></p>
+        <p>Captured Car Type: <span id="captured-type"></span></p>
+      </div>
+
+      <div class="mt-3 d-flex align-items-center flex-column px-5">
+        <button
+          class="confirmBtn d-flex align-items-center btn btn-success col-12"
+          id="usePhotoButton"
+        >
+          Use this photo
+        </button>
+        <a
+          class="confirmBtn d-flex justify-content-center align-items-center btn btn-secondary col-12 mt-2 fw-bold text-white"
+          id="downloadButton"
+        >
+          Download
+        </a>
+        <button
+          class="confirmBtn btn btn-primary d-flex align-items-center col-12 mt-2"
+          id="retakeButton"
+        >
+          <?xml version="1.0" encoding="UTF-8"?><svg
+            width="22px"
+            height="22px"
+            stroke-width="1"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            color="white"
+          >
+            <path
+              d="M6.67742 20.5673C2.53141 18.0212 0.758026 12.7584 2.71678 8.1439C4.87472 3.0601 10.7453 0.68822 15.8291 2.84617C20.9129 5.00412 23.2848 10.8747 21.1269 15.9585C20.2837 17.945 18.8736 19.5174 17.1651 20.5673"
+              stroke="white"
+              stroke-width="1"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+            <path
+              d="M17 16V20.4C17 20.7314 17.2686 21 17.6 21H22"
+              stroke="white"
+              stroke-width="1"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+            <path
+              d="M12 22.01L12.01 21.9989"
+              stroke="white"
+              stroke-width="1"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+          </svg>
+          Retake
+        </button>
       </div>
     </div>
 
@@ -133,6 +195,51 @@
       <!-- Shutter -->
       <div class="shutter-ctn">
         <button id="take-photo" class="shutter take-photo"></button>
+
+        <button
+          id="flipCameraButton"
+          class="flip-camera-button"
+          title="Flip Camera"
+        >
+          <?xml version="1.0" encoding="UTF-8"?><svg
+            width="24px"
+            height="24px"
+            stroke-width="1"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            color="white"
+          >
+            <path
+              d="M22.0028 3V7.49704C22.0028 7.77482 21.7776 8 21.4998 8V8C21.2999 8 21.12 7.88104 21.034 7.70059C19.4262 4.32948 15.9866 2 12.0028 2C6.81746 2 2.55391 5.94668 2.05219 11"
+              stroke="white"
+              stroke-width="1"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+            <path
+              d="M6 16.4V9.39365C6 9.06228 6.26863 8.79365 6.6 8.79365H7.77283C7.97677 8.79365 8.16674 8.69006 8.2772 8.51863L9.7228 6.27502C9.83326 6.10359 10.0232 6 10.2272 6H13.7728C13.9768 6 14.1667 6.10359 14.2772 6.27502L15.7228 8.51863C15.8333 8.69006 16.0232 8.79365 16.2272 8.79365H17.4C17.7314 8.79365 18 9.06228 18 9.39365V16.4C18 16.7314 17.7314 17 17.4 17H6.6C6.26863 17 6 16.7314 6 16.4Z"
+              stroke="white"
+              stroke-width="1"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+            <path
+              d="M12 14C13.1046 14 14 13.1046 14 12C14 10.8954 13.1046 10 12 10C10.8954 10 10 10.8954 10 12C10 13.1046 10.8954 14 12 14Z"
+              stroke="white"
+              stroke-width="1"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+            <path
+              d="M2.05078 21V16.503C2.05078 16.2252 2.27596 16 2.55374 16V16C2.75366 16 2.93357 16.119 3.01963 16.2994C4.62737 19.6705 8.06703 22 12.0508 22C17.2361 22 21.4997 18.0533 22.0014 13"
+              stroke="white"
+              stroke-width="1"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+          </svg>
+        </button>
       </div>
     </main>
 
