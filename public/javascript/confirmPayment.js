@@ -15,5 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Calculate the tip value and set it to the tips input field
     confirmTipsInput.value = totalPaid - washCost;
+
+
   });
 });
