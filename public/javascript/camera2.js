@@ -135,20 +135,34 @@ async function flipCamera() {
       (device) => device.kind === "videoinput"
     );
 
-    // Find the current video track
-    const currentVideoTrack = currentStream.getVideoTracks()[0];
+    // Log all camera devices found
+    console.log("Video devices found:", videoDevices);
 
-    // Find the next available video device
-    const nextDeviceId = videoDevices.find(
-      (device) => device.deviceId !== currentVideoTrack.deviceId
+    // Check if the current video track exists
+    let currentVideoTrack = currentStream ? currentStream.getVideoTracks()[0] : null;
+
+    // Find the back camera
+    let nextDeviceId = videoDevices.find(
+      (device) => device.label.toLowerCase().includes("back")
     );
+
+    // If no back camera is found, use the next available device
+    if (!nextDeviceId) {
+      nextDeviceId = videoDevices.find(
+        (device) => !currentVideoTrack || device.deviceId !== currentVideoTrack.deviceId
+      );
+    }
+
+    // If no other camera device is found, log a warning and return
     if (!nextDeviceId) {
       console.warn("No other camera device found.");
       return;
     }
 
-    // Stop the current stream
-    currentVideoTrack.stop();
+    // Stop the current video track if it exists
+    if (currentVideoTrack) {
+      currentVideoTrack.stop();
+    }
 
     // Get constraints for the new camera
     const newConstraints = {
@@ -167,3 +181,4 @@ async function flipCamera() {
     console.error("Error flipping camera:", error);
   }
 }
+
