@@ -43,26 +43,6 @@
     border-radius: 5px;
   }
 
-
-
-main {
-    margin: 0;
-    height: 100vh;
-    overflow-y: scroll;
-}
-
-#cameraTop {
-    height: 10vh;
-    width: 100%;
-    background: black;
-    display: flex;
-    align-items: center;
-    padding: 0 20px;
-    position: fixed;
-    top: 0;
-    z-index: 1;
-}
-
 #returnDashboardButton {
     display: flex;
     align-items: center;
@@ -86,54 +66,44 @@ button {
 }
 
 .confirmBtn{
+    display: flex;
+    gap: 8px;
     height: 42px;
 }
 
-.camera-ctn {
-    position: relative;
-    background: #000000;
+#camera-app{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-.camera-view video,
-.camera-view canvas {
+
+#cameraTop {
+    height: 10vh;
+    width: 100%;
+    background: black;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.webcam-container video,
+.webcam-container canvas {
     height: 75vh;
     width: 100vw;
     object-fit: cover;
     padding: 0;
     margin: 0;
-    transform: scaleX(-1);
-    /* This flips the video horizontally */
-}
-
-/* Camera Bottom */
-.camera-bottom {
-    height: 250px;
-    background: #00000050;
-    position: absolute;
-    inset: 0;
-    top: auto;
-    padding: 0 5%;
-    display: grid;
-    place-items: center;
-}
-
-.camera-bottom>.inner {
-    display: grid;
-    place-items: center;
-    max-width: 500px;
 }
 
 /* Shutter Container */
 .shutter-ctn {
+    flex: 1;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    height: 16vh;
     width: 100%;
     background: black;
-    position: fixed;
-    bottom: 0;
-    z-index: 1;
 }
 
 .shutter {
