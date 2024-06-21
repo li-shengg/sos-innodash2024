@@ -57,11 +57,24 @@ document.addEventListener("DOMContentLoaded", () => {
     .getElementById("confirmPaymentForm")
     .addEventListener("submit", (event) => {
       event.preventDefault();
+
+      const warningCard = document.getElementById('warningCard')
+      const warningText = document.getElementById('warningText')
+
       const data = {
         totalpaid: document.getElementById("confirmTotalPaidInput").value,
         tips: document.getElementById("confirmTipsInput").value,
         tips_for: document.getElementById("confirmTipsToInput").value,
       };
+
+      // Check if tipsValue is negative
+      if (document.getElementById("confirmTipsInput").value < 0) {
+        warningCard.classList.remove('d-none')
+        warningText.innerText = 'Tips amount cannot be negative'
+        return; // Prevent further execution of the function
+      }
+
+      warningCard.classList.add('d-none')
 
       fetchMethod(
         currentUrl + `/api/cars/updatepaymentstatus/${carId}`,

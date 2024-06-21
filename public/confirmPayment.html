@@ -237,7 +237,7 @@
           <option value="MINDS">MINDS</option>
         </select>
       </div>
-      <div class="d-flex flex-column mt-4">
+      <div class="d-flex flex-column my-4">
         <button
           id="confirmPaymentButton"
           type="submit"
@@ -246,6 +246,15 @@
           Confirm
         </button>
         <button id="cancleButton" class="btn btn-danger">Cancel</button>
+      </div>
+
+      <div id="warningCard" class="card border-danger mb-3 d-none">
+        <div
+          class="card-body text-danger d-flex justify-content-center align-items-center"
+        >
+          <i class="fa-solid fa-circle-exclamation me-2 lh-base"></i>
+          <p id="warningText" class="my-auto"></p>
+        </div>
       </div>
     </form>
   </body>
