@@ -10,6 +10,10 @@ const downloadButton = document.getElementById("downloadButton");
 const retakeButton = document.getElementById("retakeButton");
 const usePhotoButton = document.getElementById("usePhotoButton");
 const flipCameraButton = document.getElementById("flipCameraButton");
+const enterManually = document.getElementById("enterManually")
+const errorText = document.getElementById('errorText')
+const capturedPlateDisplay = document.getElementById('capturedPlateDisplay')
+const capturedTypeDisplay = document.getElementById('capturedTypeDisplay')
 //Default: Loading screen
 
 const constraints = {
@@ -80,12 +84,11 @@ takePhotoButton.addEventListener("click", async () => {
   console.log("Picture taken");
   downloadButton.href = picture;
   downloadButton.download = "selfie.png";
-  downloadButton.textContent = "Download Photo";
   var base64_String = picture.split(",")[1];
 
   //Set the captured image
   capturedImage.src = picture;
-
+ capturedImage.style.border = '1px solid black'
   //Callback for AI
   const data = {
     base64_String: base64_String,
@@ -101,16 +104,50 @@ takePhotoButton.addEventListener("click", async () => {
 
       const objectData = JSON.parse(responseData);
       const keys = Object.keys(objectData);
+
+
       const carType = keys[0];
       const carPlate = keys[1];
 
-      capturedPlate.innerText = objectData[carPlate];
-      capturedType.innerText = objectData[carType];
+      if(objectData[carType] === 'None Detacted'){
+        capturedImage.src = './images/cancel.png'
+        capturedImage.style.border = 'none'
+        capturedPlateDisplay.classList.remove('d-block')
+        capturedTypeDisplay.classList.remove('d-block')
+        capturedPlateDisplay.classList.add('d-none')
+        capturedTypeDisplay.classList.add('d-none')
+        downloadButton.classList.remove('d-flex')
+        usePhotoButton.classList.remove('d-flex')
+        downloadButton.classList.add('d-none')
+        usePhotoButton.classList.add('d-none')
+        enterManually.classList.remove('d-none')
+        enterManually.classList.add('d-flex')
 
-      localStorage.setItem("predictedCarPlate", objectData[carPlate]);
-      localStorage.setItem("predictedCarType", objectData[carType]);
+        capturedPlate.innerText = '';
+        capturedType.innerText ='';
+        errorText.classList.remove('d-none')
 
-      console.log(objectData);
+      }else{
+        capturedPlate.innerText = objectData[carPlate];
+        capturedType.innerText = objectData[carType];
+  
+        localStorage.setItem("predictedCarPlate", objectData[carPlate]);
+        localStorage.setItem("predictedCarType", objectData[carType]);
+  
+        capturedPlateDisplay.classList.add('d-block')
+        capturedTypeDisplay.classList.add('d-block')
+        capturedPlateDisplay.classList.remove('d-none')
+        capturedTypeDisplay.classList.remove('d-none')
+        downloadButton.classList.add('d-flex')
+        usePhotoButton.classList.add('d-flex')
+        downloadButton.classList.remove('d-none')
+        usePhotoButton.classList.remove('d-none')
+        enterManually.classList.remove('d-flex')
+        enterManually.classList.add('d-none')
+        errorText.classList.add('d-none')
+       
+      }
+
     } else if (responseStatus == 400) {
       console.log(responseData);
     } else {
@@ -123,6 +160,13 @@ takePhotoButton.addEventListener("click", async () => {
 
 usePhotoButton.addEventListener("click", (event) => {
   event.preventDefault();
+  window.location.href = "confirmation.html";
+});
+
+enterManually.addEventListener("click", (event) => {
+  event.preventDefault();
+  localStorage.removeItem("predictedCarPlate");
+  localStorage.removeItem("predictedCarType");
   window.location.href = "confirmation.html";
 });
 

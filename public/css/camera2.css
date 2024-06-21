@@ -66,6 +66,8 @@ button {
 }
 
 .confirmBtn{
+    display: flex;
+    gap: 8px;
     height: 42px;
 }
 
